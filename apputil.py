@@ -2,19 +2,11 @@ import pandas as pd
 
 
 # update/add code below ...
-def sum_fibonacci(n):
-    if n <=0:
-        return 0
-    elif n==1:
-        return 0
-    
-    a,b = 0, 1
-    total = 2
-    for _ in range(3,n):
-        a, b = b, a + b
-        total += b
-        
-    return total
+def fibonacci(n):
+    if n <= 1:
+        return n
+    return fibonacci(n - 1) + fibonacci(n - 2)
+
 
 
 
@@ -38,8 +30,9 @@ df_bellevue = pd.read_csv(url)
 
 def task_1():
     df = df_bellevue.copy()
-    df['gender'] = df['gender'].replace('u',pd.NA)
-    return df.isna().sum().sort_values(ascending=True).index.sort_values().tolist()
+    df["gender"] = df["gender"].replace("u", pd.NA)
+    missing_values = df.isna().sum()
+    return missing_values.sort_values().index.tolist()
 
 def task_2():
     df = df_bellevue.copy()
